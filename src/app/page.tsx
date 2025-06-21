@@ -27,21 +27,6 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Load favorites on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('favorites');
-    if (saved) setFavorites(JSON.parse(saved));
-  }, []);
-
-  // Check if current movie is favorited
-  const isFavorited = !!data && favorites.some((fav: Movie) => fav.title === data.title);
-
-  const toggleFavorite = () => {
-    if (!data) return;
-    const updated = isFavorited ? favorites.filter(fav => fav.title !== data.title) : [...favorites, data];
-    setFavorites(updated);
-    localStorage.setItem('favorites', JSON.stringify(updated));
-  };
 
   // List of random movie titles
   const randomTitles = [
@@ -81,6 +66,22 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();  // prevent page reload
     fetchMovie();
+  };
+
+  // Load favorites on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('favorites');
+    if (saved) setFavorites(JSON.parse(saved));
+  }, []);
+
+  // Check if current movie is favorited
+  const isFavorited = data && (favorites as Movie[]).some(fav => fav.title === data.title);
+
+  const toggleFavorite = () => {
+    if (!data) return;
+    const updated = isFavorited ? favorites.filter(fav => fav.title !== data.title) : [...favorites, data];
+    setFavorites(updated);
+    localStorage.setItem('favorites', JSON.stringify(updated));
   };
 
   return (
