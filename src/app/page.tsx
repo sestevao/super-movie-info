@@ -3,13 +3,29 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 
+type Movie = {
+  title: string;
+  year: string;
+  poster: string;
+  director: string;
+  actors: string[];
+  plot: string;
+  rating: string;
+  funFact: string;
+  wordOfTheDay: {
+    word: string;
+    meaning: string;
+    example: string;
+  };
+};
+
 export default function Home() {
   const [movieTitle, setMovieTitle] = useState('');
-  const [data, setData] = useState<any>(null);
+  const [favorites, setFavorites] = useState<Movie[]>([]);
+  const [data, setData] = useState<Movie | null>(null);
   const [error, setError] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [favorites, setFavorites] = useState([]);
 
   // Load favorites on mount
   useEffect(() => {
@@ -18,13 +34,11 @@ export default function Home() {
   }, []);
 
   // Check if current movie is favorited
-  const isFavorited = data && favorites.some(fav => fav.title === data.title);
+  const isFavorited = !!data && favorites.some((fav: Movie) => fav.title === data.title);
 
-  // Toggle favorite status
   const toggleFavorite = () => {
     if (!data) return;
-    let updated;
-    updated = isFavorited ? favorites.filter(fav => fav.title !== data.title) : [...favorites, data];
+    const updated = isFavorited ? favorites.filter(fav => fav.title !== data.title) : [...favorites, data];
     setFavorites(updated);
     localStorage.setItem('favorites', JSON.stringify(updated));
   };
