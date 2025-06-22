@@ -1,40 +1,103 @@
-<<<<<<< HEAD
-# super-movie-info
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Create README.md content and save as a file
 
-## Getting Started
+readme_content = """
+# 🎬 Super API Movie App
 
-First, run the development server:
+A fun, interactive movie information app built with **Next.js 14**, **TypeScript**, and **TailwindCSS**.
+It fetches movie data, fun facts, and even a "Word of the Day" from a custom API! Users can search for movies, view detailed info, and add favorites to local storage.
+
+---
+
+## 🚀 Features
+
+- 🔍 **Movie Search:** Search any movie by title.
+- 🎲 **Random Movie Picker:** Auto-fetch a random popular movie if no title is entered.
+- ❤️ **Favorite Movies:** Save favorite movies to local storage.
+- 🌓 **Dark/Light Mode Toggle**
+- 📝 **Word of the Day** and **Fun Fact** per movie.
+- 🎨 Styled using TailwindCSS and custom components.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Axios
+- **State Management:** React Hooks (useState, useEffect)
+- **Persistence:** Browser LocalStorage
+
+---
+
+## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/super-api-movie.git
+cd super-api-movie
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🗂️ Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  ├── app/
+  │     └── page.tsx          # Main App Page
+  ├── components/
+  │     └── ui/               # UI components (Card, CardHeader, etc.)
+  └── pages/api/super-movie.ts # API route for fetching movie data
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## ⚙️ API Endpoint
 
-To learn more about Next.js, take a look at the following resources:
+Custom API route at:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```/api/super-movie?title=MovieName```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+It returns:
 
-## Deploy on Vercel
+```
+{
+  "title": "Inception",
+  "year": "2010",
+  "poster": "...",
+  "director": "Christopher Nolan",
+  "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "..."],
+  "plot": "...",
+  "rating": "8.8",
+  "funFact": "Did you know...",
+  "wordOfTheDay": {
+    "word": "Dreamscape",
+    "meaning": "A landscape or scene with dream-like qualities.",
+    "example": "The film creates a dreamscape that blurs reality and fantasy."
+  }
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌟 Features in Detail
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> f6321ed (Initial commit)
+- Search Functionality: Enter any movie title to fetch details.
+- Random Movie Fallback: If search is empty, a random title from the preset list is used.
+- Local Storage Favorites: Your favorite movies persist across sessions.
+- Dark Mode Toggle: Instantly switch between light and dark themes.
+
+## 🐛 Known Issues
+
+API Rate Limit: Might receive 429 errors when requests are too frequent.
+
+## 🙌 Contributing
+
+Feel free to fork and submit PRs!
+Please open issues for bugs or feature requests.
+
+## 📄 License
+MIT License
+
